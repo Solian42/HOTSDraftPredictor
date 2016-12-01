@@ -2,16 +2,14 @@ import csv
 replays = dict()
 with open('Data/Replays.csv', mode='r') as infile:
     reader = csv.reader(infile)
-    i = 0
     for rows in reader:
-        replays[i] = rows
-        i+=1
+        replays[rows[0]] = rows
 replayCharacters = dict()
 with open('Data/ReplayCharacters.csv', mode='r') as infile:
     reader = csv.reader(infile)
     i = 0
     for rows in reader:
-        replays[i] = rows
+        #replayCharacters[i] =
         i+=1
 qm = list()
 hl = list()
@@ -31,3 +29,5 @@ print "QM:", len(qm)
 print "HL:", len(hl)
 print "TL:", len(tl)
 print "UD:", len(ud)
+print replayCharacters[0]
+print replayCharacters[1]

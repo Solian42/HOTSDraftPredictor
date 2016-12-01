@@ -36,5 +36,5 @@ for id in player_id:
                 replays.add(replayID)
     i += 1
 print len(replays)
-pickle.dump(replays, open("masters_replays.data", "wb"))
+pickle.dump(replays, open("masters_replaysIDS.data", "wb"))
 

@@ -20,7 +20,8 @@ def toString(s):
     return unicodedata.normalize('NFKD', s).encode('ascii', 'ignore')
 
 
-replay_ids = pickle.load(open("masters_replays.data", "rb"))
+
+replay_ids = pickle.load(open("Data/masters_replaysIDS.data", "rb"))
 vectorDict = dict()
 i = 1
 length = len(replay_ids)
@@ -105,5 +106,5 @@ for replay in replay_ids:
             currList.append(player)
     i += 1
 print len(vectorDict)
-pickle.dump(vectorDict, open("VectorData.data", "wb"))
+pickle.dump(vectorDict, open("masters_replays.data", "wb"))
 
