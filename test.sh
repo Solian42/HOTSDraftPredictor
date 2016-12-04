@@ -25,10 +25,8 @@ options=(pro_data masters_data)
 
 echo "option | algorithm | accuracy | duration"
 
-start=$(python -c'import time; print(str(time.time()))')
 acc="$(python SciKitHarness.py)"
-duration=$(python -c'import time; print(str(time.time() - float('$start')))')
-echo "masters_data | Neural Network | $acc | $duration (s)"
+echo "$acc"
 
 # loop over everything...
 for opt in "${options[@]}"; do
