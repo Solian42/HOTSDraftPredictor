@@ -1,4 +1,5 @@
 from sklearn.neural_network import MLPClassifier
+from sklearn.linear_model import LogisticRegression
 
 def load_data(filename):
     instances = []
@@ -39,19 +40,26 @@ def load_data(filename):
 
 instances, labels = load_data("datasets/masters_data.train")
 
-classifier = MLPClassifier(solver='adam', alpha=1e-5,
+NNclassifier = MLPClassifier(solver='adam', alpha=1e-5,
                            hidden_layer_sizes=(75), random_state=1,
                            max_iter=10000)
+LRclassifier = LogisticRegression(solver='liblinear', max_iter=1000)
 
-classifier.fit(instances, labels)
+LRclassifier.fit(instances, labels)
+NNclassifier.fit(instances, labels)
 
 pInstances, pLabels = load_data("datasets/masters_data.dev")
 
-results = classifier.predict(pInstances)
-
-correct = 0.0
+NNresults = NNclassifier.predict(pInstances)
+LRresults = LRclassifier.predict(pInstances)
+LRcorrect = 0.0
+NNcorrect = 0.0
 for i in range(0, len(pLabels)):
-    if results[i] == pLabels[i]:
-        correct += 1.0
-result = "Accuracy: " + str(correct/i) + " (" + str(int(correct)) + "/" + str(i) + ")"
-print result
+    if NNresults[i] == pLabels[i]:
+        NNcorrect += 1.0
+    if LRresults[i] == pLabels[i]:
+        LRcorrect += 1.0
+NNresult = "Accuracy: " + str(NNcorrect/i) + " (" + str(int(NNcorrect)) + "/" + str(i) + ")"
+LRresult = "Accuracy: " + str(LRcorrect/i) + " (" + str(int(LRcorrect)) + "/" + str(i) + ")"
+print NNresult
+print LRresult
