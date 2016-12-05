@@ -922,10 +922,10 @@ vectors = dict()
 i = 0
 
 for ID, replay in replaydata.iteritems():
-    vectors[i] = [0.0] * 153
+    vectors[i] = [0.0] * 164
     MarkMap(replay[0], vectors[i])
     for player in replay[14:25]:
-        FillVector(player, vectors[i], ID)
+        FillVectorDetailed(player, vectors[i], ID)
     i += 1
 f = open("masters_data.train", "wb")
 for vector in vectors.itervalues():
