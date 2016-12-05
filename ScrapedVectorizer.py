@@ -1488,18 +1488,18 @@ vectors = dict()
 i = 0
 
 for ID, replay in replaydata.iteritems():
-    vectors[i] = [0.0] * 119
+    vectors[i] = [0.0] * 164
     MarkMap(replay[0], vectors[i])
     for player in replay[14:25]:
         FillVectorHeroless(player, vectors[i], ID)
     i += 1
-f1 = open("datasets/masters_data.train", "wb")
-f2 = open("datasets/masters_data.dev", "wb")
+f1 = open("datasets/masters_data_heroless.train", "wb")
+f2 = open("datasets/masters_data_heroless.dev", "wb")
 for vector in vectors.itervalues():
     s = str(vector[0]) + " "
     i = 1
     for feature in vector[1:]:
-        if i is 118:
+        if i is 163:
             s += "" + str(i) + ":" + str(feature)
         else:
             s+= "" + str(i) + ":" + str(feature) + " "

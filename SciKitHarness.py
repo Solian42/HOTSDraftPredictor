@@ -66,10 +66,6 @@ lrEnd = time.time()
 
 LRcorrect = 0.0
 NNcorrect = 0.0
-coefs = LRclassifier.coef_
-for i in range(0, len(coefs[0])):
-    if abs(coefs[0][i]) > 1.5:
-        print "Index:", i + 1, "Value:", coefs[0][i]
 for i in range(0, len(pLabels)):
     if NNresults[i] == pLabels[i]:
         NNcorrect += 1.0
@@ -114,15 +110,67 @@ lrEnd = time.time()
 
 LRcorrect = 0.0
 NNcorrect = 0.0
+
 for i in range(0, len(pLabels)):
     if NNresults[i] == pLabels[i]:
         NNcorrect += 1.0
+    else:
+        print i
     if LRresults[i] == pLabels[i]:
         LRcorrect += 1.0
+    else:
+        print i
 i += 1
 NNresult = "masters_data | neural_network | Accuracy: " + str(NNcorrect/i) +\
            " (" + str(int(NNcorrect)) + "/" + str(i) + ") | " + str(nnEnd - nnStart) + " (s)"
 LRresult = "masters_data | linear_regression | Accuracy: " + str(LRcorrect/i) +\
+           " (" + str(int(LRcorrect)) + "/" + str(i) + ") | " + str(lrEnd -lrStart) + " (s)"
+print NNresult
+print LRresult
+
+
+#Heroless Data
+instances, labels = load_data("datasets/masters_data_heroless.train")
+
+pInstances, pLabels = load_data("datasets/masters_data_heroless.dev")
+
+nnStart = time.time()
+
+NNclassifier = MLPClassifier(solver='adam', alpha=1e-5,
+                           hidden_layer_sizes=(75), random_state=1,
+                           max_iter=10000)
+NNclassifier.fit(instances, labels)
+
+NNresults = NNclassifier.predict(pInstances)
+
+nnEnd = time.time()
+
+
+lrStart = time.time()
+LRclassifier = LogisticRegression(solver='liblinear', max_iter=1000)
+
+LRclassifier.fit(instances, labels)
+
+LRresults = LRclassifier.predict(pInstances)
+
+lrEnd = time.time()
+
+LRcorrect = 0.0
+NNcorrect = 0.0
+
+for i in range(0, len(pLabels)):
+    if NNresults[i] == pLabels[i]:
+        NNcorrect += 1.0
+    else:
+        print i
+    if LRresults[i] == pLabels[i]:
+        LRcorrect += 1.0
+    else:
+        print i
+i += 1
+NNresult = "masters_data_heroless | neural_network | Accuracy: " + str(NNcorrect/i) +\
+           " (" + str(int(NNcorrect)) + "/" + str(i) + ") | " + str(nnEnd - nnStart) + " (s)"
+LRresult = "masters_data_heroless | linear_regression | Accuracy: " + str(LRcorrect/i) +\
            " (" + str(int(LRcorrect)) + "/" + str(i) + ") | " + str(lrEnd -lrStart) + " (s)"
 print NNresult
 print LRresult
