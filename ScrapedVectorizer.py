@@ -1,5 +1,6 @@
 import pickle
 import unicodedata
+import random
 
 def toString(s):
     return unicodedata.normalize('NFKD', s).encode('ascii', 'ignore')
@@ -922,12 +923,13 @@ vectors = dict()
 i = 0
 
 for ID, replay in replaydata.iteritems():
-    vectors[i] = [0.0] * 164
-    MarkMap(replay[0], vectors[i])
+    vectors[i] = [0.0] * 119
+    #MarkMap(replay[0], vectors[i])
     for player in replay[14:25]:
-        FillVectorDetailed(player, vectors[i], ID)
+        FillVector(player, vectors[i], ID)
     i += 1
-f = open("masters_data.train", "wb")
+f1 = open("datasets/masters_data.train", "wb")
+f2 = open("datasets/masters_data.dev", "wb")
 for vector in vectors.itervalues():
     s = str(vector[0]) + " "
     i = 1
@@ -937,9 +939,14 @@ for vector in vectors.itervalues():
         else:
             s+= "" + str(i) + ":" + str(feature) + " "
         i += 1
-    f.write(s)
-    f.write('\n')
-f.close()
+    if random.randint(0, 10) % 10 != 0:
+        f1.write(s)
+        f1.write('\n')
+    else:
+        f2.write(s)
+        f2.write('\n')
+f1.close()
+f2.close()
 
 
 
