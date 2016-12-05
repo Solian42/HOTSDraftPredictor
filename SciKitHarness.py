@@ -114,12 +114,8 @@ NNcorrect = 0.0
 for i in range(0, len(pLabels)):
     if NNresults[i] == pLabels[i]:
         NNcorrect += 1.0
-    else:
-        print i
     if LRresults[i] == pLabels[i]:
         LRcorrect += 1.0
-    else:
-        print i
 i += 1
 NNresult = "masters_data | neural_network | Accuracy: " + str(NNcorrect/i) +\
            " (" + str(int(NNcorrect)) + "/" + str(i) + ") | " + str(nnEnd - nnStart) + " (s)"

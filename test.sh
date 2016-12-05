@@ -21,7 +21,7 @@
 #algorithm=(perceptron averaged_perceptron margin_perceptron pegasos knn distance_knn)
 algorithm=(adaboost pegasos knn distance_knn)
 #your possible datasetssets
-options=(pro_data masters_data)
+options=(pro_data masters_data masters_data_extra masters_data_heroless)
 
 echo "option | algorithm | accuracy | duration"
 
