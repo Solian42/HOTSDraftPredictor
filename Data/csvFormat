@@ -1,0 +1,107 @@
+0:ReplayID,
+1:Is Auto Select,
+2:HeroID,
+3:Hero Level,
+4:Is Winner,
+5:MMR Before,
+6:In Game Level,
+7:Takedowns,
+8:Killing Blows,
+9:Assists,
+10:Deaths,
+11:Highest Kill Streak,
+12:Hero Damage,
+13:Siege Damage,
+14:Healing,
+15:Self Healing,
+16:Damage Taken,
+17:Experience Contribution,
+18:Time Spent Dead,
+19:Merc Camp Captures
+
+
+Replays:
+
+0:ReplayID,
+1:GameMode(3=Quick Match 4=Hero League 5=Team League 6=Unranked Draft),
+2:MapID,
+3:Replay Length,
+4:Timestamp (UTC)
+
+Maps:
+1001,Battlefield of Eternity,,
+1002,Blackheart's Bay,,
+1003,Cursed Hollow,,
+1004,Dragon Shire,,
+1005,Garden of Terror,,
+1006,Haunted Mines,,
+1007,Infernal Shrines,,
+1008,Sky Temple,,
+1009,Tomb of the Spider Queen,,
+1010,Towers of Doom,,
+1011,Lost Cavern,,
+1012,Braxis Holdout,,
+1013,Warhead Junction,,
+
+Heroes:
+
+1,Abathur,Specialist,Utility
+2,Anub'arak,Warrior,Bruiser
+3,Arthas,Warrior,Bruiser
+4,Azmodan,Specialist,Siege
+5,Brightwing,Support,Healer
+6,Chen,Warrior,Tank
+7,Diablo,Warrior,Tank
+8,E.T.C.,Warrior,Tank
+9,Falstad,Assassin,Sustained Damage
+10,Gazlowe,Specialist,Siege
+11,Illidan,Assassin,Sustained Damage
+12,Jaina,Assassin,Burst Damage
+13,Johanna,Warrior,Tank
+14,Kael'thas,Assassin,Burst Damage
+15,Kerrigan,Assassin,Ambusher
+16,Kharazim,Support,Healer
+17,Leoric,Warrior,Bruiser
+18,Li Li,Support,Healer
+19,Malfurion,Support,Healer
+20,Muradin,Warrior,Tank
+21,Murky,Specialist,Utility
+22,Nazeebo,Specialist,Sustained Damage
+23,Nova,Assassin,Ambusher
+24,Raynor,Assassin,Sustained Damage
+25,Rehgar,Support,Healer
+26,Sgt. Hammer,Specialist,Siege
+27,Sonya,Warrior,Bruiser
+28,Stitches,Warrior,Tank
+29,Sylvanas,Specialist,Siege
+30,Tassadar,Support,Support
+31,The Butcher,Assassin,Ambusher
+32,The Lost Vikings,Specialist,Utility
+33,Thrall,Assassin,Sustained Damage
+34,Tychus,Assassin,Sustained Damage
+35,Tyrael,Warrior,Bruiser
+36,Tyrande,Support,Healer
+37,Uther,Support,Healer
+38,Valla,Assassin,Sustained Damage
+39,Zagara,Specialist,Siege
+40,Zeratul,Assassin,Ambusher
+41,Rexxar,Warrior,Tank
+42,Lt. Morales,Support,Healer
+43,Artanis,Warrior,Bruiser
+44,Cho,Warrior,Tank
+45,Gall,Assassin,Sustained Damage
+46,Lunara,Assassin,Sustained Damage
+47,Greymane,Assassin,Sustained Damage
+48,Li-Ming,Assassin,Burst Damage
+49,Xul,Specialist,Siege
+50,Dehaka,Warrior,Tank
+51,Tracer,Assassin,Sustained Damage
+52,Chromie,Assassin,Burst Damage
+53,Medivh,Specialist,Support
+54,Gul'dan,Assassin,Sustained Damage
+55,Auriel,Support,Healer
+56,Alarak,Assassin,Ambusher
+57,Zarya,Warrior,Tank
+58,Samuro,Assassin,Ambusher
+59,Varian,Assassin,Bruiser
+60,Ragnaros,Assassin,Sustained Damage
