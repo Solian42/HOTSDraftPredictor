@@ -14,7 +14,7 @@
 # add to this array as we add more algorithms for the class
 
 
-algorithm=(neural_network logistic_regression)
+algorithm=(neural_network logistic_regression knn svm)
 #your possible datasetssets
 options=(pro_data masters_data masters_data_extra masters_data_heroless hl_data_hero_only hl_data_detailed)
 
