@@ -4,6 +4,6 @@
 *.model
 *.train
 *.dev
-*.predictions
+datasets/*
 .idea/*
 *.data

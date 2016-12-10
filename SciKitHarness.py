@@ -1,6 +1,9 @@
 from sklearn.neural_network import MLPClassifier
 from sklearn.linear_model import LogisticRegression
-import time
+import os
+import argparse
+import sys
+import pickle
 
 def load_data(filename):
     instances = []
@@ -39,134 +42,94 @@ def load_data(filename):
 
     return instances, labels
 
-instances, labels = load_data("datasets/masters_data_extra.train")
-
-pInstances, pLabels = load_data("datasets/masters_data_extra.dev")
-
-nnStart = time.time()
-
-NNclassifier = MLPClassifier(solver='adam', alpha=1e-5,
-                           hidden_layer_sizes=(100), random_state=1,
-                           max_iter=10000)
-NNclassifier.fit(instances, labels)
-
-NNresults = NNclassifier.predict(pInstances)
-
-nnEnd = time.time()
-
-
-lrStart = time.time()
-LRclassifier = LogisticRegression(solver='liblinear', max_iter=1000)
-
-LRclassifier.fit(instances, labels)
-
-LRresults = LRclassifier.predict(pInstances)
-
-lrEnd = time.time()
-
-LRcorrect = 0.0
-NNcorrect = 0.0
-for i in range(0, len(pLabels)):
-    if NNresults[i] == pLabels[i]:
-        NNcorrect += 1.0
-    if LRresults[i] == pLabels[i]:
-        LRcorrect += 1.0
-i += 1
-NNresult = "masters_data_extra | neural_network | Accuracy: " + str(NNcorrect/i) +\
-           " (" + str(int(NNcorrect)) + "/" + str(i) + ") | " + str(nnEnd - nnStart) + " (s)"
-LRresult = "masters_data_extra | linear_regression | Accuracy: " + str(LRcorrect/i) +\
-           " (" + str(int(LRcorrect)) + "/" + str(i) + ") | " + str(lrEnd -lrStart) + " (s)"
-print NNresult
-print LRresult
-
-
-
-
-#With no extra features
-instances, labels = load_data("datasets/masters_data.train")
-
-pInstances, pLabels = load_data("datasets/masters_data.dev")
-
-nnStart = time.time()
-
-NNclassifier = MLPClassifier(solver='adam', alpha=1e-5,
-                           hidden_layer_sizes=(75), random_state=1,
-                           max_iter=10000)
-NNclassifier.fit(instances, labels)
-
-NNresults = NNclassifier.predict(pInstances)
-
-nnEnd = time.time()
-
-
-lrStart = time.time()
-LRclassifier = LogisticRegression(solver='liblinear', max_iter=1000)
-
-LRclassifier.fit(instances, labels)
-
-LRresults = LRclassifier.predict(pInstances)
-
-lrEnd = time.time()
-
-LRcorrect = 0.0
-NNcorrect = 0.0
-
-for i in range(0, len(pLabels)):
-    if NNresults[i] == pLabels[i]:
-        NNcorrect += 1.0
-    if LRresults[i] == pLabels[i]:
-        LRcorrect += 1.0
-i += 1
-NNresult = "masters_data | neural_network | Accuracy: " + str(NNcorrect/i) +\
-           " (" + str(int(NNcorrect)) + "/" + str(i) + ") | " + str(nnEnd - nnStart) + " (s)"
-LRresult = "masters_data | linear_regression | Accuracy: " + str(LRcorrect/i) +\
-           " (" + str(int(LRcorrect)) + "/" + str(i) + ") | " + str(lrEnd -lrStart) + " (s)"
-print NNresult
-print LRresult
-
-
-#Heroless Data
-instances, labels = load_data("datasets/masters_data_heroless.train")
-
-pInstances, pLabels = load_data("datasets/masters_data_heroless.dev")
-
-nnStart = time.time()
-
-NNclassifier = MLPClassifier(solver='adam', alpha=1e-5,
-                           hidden_layer_sizes=(75), random_state=1,
-                           max_iter=10000)
-NNclassifier.fit(instances, labels)
-
-NNresults = NNclassifier.predict(pInstances)
-
-nnEnd = time.time()
-
-
-lrStart = time.time()
-LRclassifier = LogisticRegression(solver='liblinear', max_iter=1000)
-
-LRclassifier.fit(instances, labels)
-
-LRresults = LRclassifier.predict(pInstances)
-
-lrEnd = time.time()
-
-LRcorrect = 0.0
-NNcorrect = 0.0
-
-for i in range(0, len(pLabels)):
-    if NNresults[i] == pLabels[i]:
-        NNcorrect += 1.0
+def check_args(args):
+    if args.mode.lower() == "train":
+        if args.algorithm is None:
+            raise Exception("--algorithm should be specified in mode \"train\"")
     else:
-        print i
-    if LRresults[i] == pLabels[i]:
-        LRcorrect += 1.0
+        if args.predictions_file is None:
+            raise Exception("--prediction_file should be specified in mode \"test\"")
+        if not os.path.exists(args.model_file):
+            raise Exception("model file specified by --model-file does not exist.")
+
+
+def get_args():
+    parser = argparse.ArgumentParser(description="This is the main test harness for scikit")
+
+    parser.add_argument("--data", type=str, required=True, help="The data to use for training or testing.")
+    parser.add_argument("--mode", type=str, required=True, choices=["train", "test"],
+                        help="Operating mode: train or test.")
+    parser.add_argument("--model-file", type=str, required=True,
+                        help="The name of the model file to create/load.")
+    parser.add_argument("--predictions-file", type=str, help="The predictions file to create.")
+    parser.add_argument("--algorithm", type=str, help="The name of the algorithm for training.")
+    args = parser.parse_args()
+    check_args(args)
+
+    return args
+
+def train(instances, labels):
+    args = get_args()
+    algorithm = args.algorithm
+
+    if algorithm == "neural_network":
+        NNclassifier = MLPClassifier(solver='adam', alpha=1e-5,
+                                     hidden_layer_sizes=(100), random_state=1,
+                                     max_iter=10000)
+        NNclassifier.fit(instances, labels)
+        return NNclassifier
+    elif algorithm == "logistic_regression":
+        LRclassifier = LogisticRegression(solver='liblinear', max_iter=1000)
+        LRclassifier.fit(instances, labels)
+        return LRclassifier
     else:
-        print i
-i += 1
-NNresult = "masters_data_heroless | neural_network | Accuracy: " + str(NNcorrect/i) +\
-           " (" + str(int(NNcorrect)) + "/" + str(i) + ") | " + str(nnEnd - nnStart) + " (s)"
-LRresult = "masters_data_heroless | linear_regression | Accuracy: " + str(LRcorrect/i) +\
-           " (" + str(int(LRcorrect)) + "/" + str(i) + ") | " + str(lrEnd -lrStart) + " (s)"
-print NNresult
-print LRresult
+        return None
+
+
+def write_predictions(predictor, instances, predictions_file):
+    try:
+        with open(predictions_file, 'w') as writer:
+
+                results = predictor.predict(instances)
+                for label in results:
+                    writer.write(str(label))
+                    writer.write('\n')
+    except IOError:
+        raise Exception("Exception while opening/writing file for writing predicted labels: " + predictions_file)
+
+def main():
+    args = get_args()
+
+    if args.mode.lower() == "train":
+        # Load the training data.
+        instances, labels = load_data(args.data)
+        # Train the model.
+        predictor = train(instances, labels)
+        try:
+            with open(args.model_file, 'wb') as writer:
+                pickle.dump(predictor, writer)
+        except IOError:
+            raise Exception("Exception while writing to the model file.")
+        except pickle.PickleError:
+            raise Exception("Exception while dumping pickle.")
+
+    elif args.mode.lower() == "test":
+        # Load the test data.
+        instances, labels = load_data(args.data)
+
+        predictor = None
+        # Load the model.
+        try:
+            with open(args.model_file, 'rb') as reader:
+                predictor = pickle.load(reader)
+        except IOError:
+            raise Exception("Exception while reading the model file.")
+        except pickle.PickleError:
+            raise Exception("Exception while loading pickle.")
+
+        write_predictions(predictor, instances, args.predictions_file)
+    else:
+        raise Exception("Unrecognized mode.")
+
+if __name__ == "__main__":
+    main()
