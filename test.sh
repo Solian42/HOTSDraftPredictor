@@ -21,12 +21,11 @@
 #algorithm=(perceptron averaged_perceptron margin_perceptron pegasos knn distance_knn)
 algorithm=(adaboost pegasos knn distance_knn)
 #your possible datasetssets
-options=(pro_data masters_data masters_data_extra masters_data_heroless)
+options=(pro_data masters_data masters_data_extra masters_data_heroless hl_data_hero_only hl_data_detailed)
 
 echo "option | algorithm | accuracy | duration"
 
-acc="$(python SciKitHarness.py)"
-echo "$acc"
+python SciKitHarness.py
 
 # loop over everything...
 for opt in "${options[@]}"; do

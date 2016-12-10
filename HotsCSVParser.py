@@ -1472,13 +1472,13 @@ def FillVectorHeroless(dict, vector, ID):
 
 
 replays = dict()
-with open('Data/Replays.csv', mode='r') as infile:
+with open('datasets/Replays.csv', mode='r') as infile:
     reader = csv.reader(infile)
     for rows in reader:
         replays[rows[0]] = list()
         replays[rows[0]].append(rows)
 
-with open('Data/ReplayCharacters.csv', mode='r') as infile:
+with open('datasets/ReplayCharacters.csv', mode='r') as infile:
     reader = csv.reader(infile)
     i = 0
     for rows in reader:
@@ -1495,18 +1495,18 @@ for index in replays.iterkeys():
     #elif replays[index][0][1] is '6':
      #   ud.append(replays[index])
 print "HL:", len(hl)
-
+pickle.dump(hl, open("hl_list.data", "wb"))
 vectors = dict()
 i = 0
 for replay in hl:
     vectors[i] = [0.0] * 164
     ID = replay[0][0]
-    MarkMap(replay[0][3],vectors[i])
+    MarkMap(replay[0][2],vectors[i])
     for player in replay[1:11]:
-        FillVector(player, vectors[i], ID)
+        FillVectorHeroless(player, vectors[i], ID)
     i+=1
-f1 = open("datasets/hl_data_hero_only.train", "wb")
-f2 = open("datasets/hl_data_hero_only.dev", "wb")
+f1 = open("datasets/hl_data_heroless.train", "wb")
+f2 = open("datasets/hl_data_heroless.dev", "wb")
 for vector in vectors.itervalues():
     s = str(vector[0]) + " "
     i = 1
