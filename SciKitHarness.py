@@ -1,5 +1,7 @@
 from sklearn.neural_network import MLPClassifier
 from sklearn.linear_model import LogisticRegression
+from sklearn import neighbors
+from sklearn.svm import SVC
 import os
 import argparse
 import sys
@@ -63,6 +65,10 @@ def get_args():
                         help="The name of the model file to create/load.")
     parser.add_argument("--predictions-file", type=str, help="The predictions file to create.")
     parser.add_argument("--algorithm", type=str, help="The name of the algorithm for training.")
+    parser.add_argument("--knn", type=int, help="The value of K for KNN classification.",
+                        default=5)
+    parser.add_argument("--svm-kernel", type=str, help="The kernel to use for SVM classification",
+                        default='linear')
     args = parser.parse_args()
     check_args(args)
 
@@ -82,6 +88,14 @@ def train(instances, labels):
         LRclassifier = LogisticRegression(solver='liblinear', max_iter=1000)
         LRclassifier.fit(instances, labels)
         return LRclassifier
+    elif algorithm == "knn":
+        KNNclassifier = neighbors.KNeighborsClassifier(args.knn)
+        KNNclassifier.fit(instances, labels)
+        return KNNclassifier
+    elif algorithm == "svm":
+        SVclassifier = SVC(kernel=args.svm_kernel)
+        SVclassifier.fit(instances, labels)
+        return SVclassifier
     else:
         return None
 
