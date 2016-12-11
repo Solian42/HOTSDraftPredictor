@@ -1,6 +1,7 @@
 import csv
 import pickle
 import random
+import math
 
 def str2bool(v):
   return v.lower() in ("yes", "true", "t", "1")
@@ -1470,48 +1471,50 @@ def FillVectorHeroless(dict, vector, ID):
         print name
     pass
 
-
-replays = dict()
-with open('datasets/Replays.csv', mode='r') as infile:
-    reader = csv.reader(infile)
-    for rows in reader:
-        replays[rows[0]] = list()
-        replays[rows[0]].append(rows)
-
-with open('datasets/ReplayCharacters.csv', mode='r') as infile:
-    reader = csv.reader(infile)
-    i = 0
-    for rows in reader:
-        replays[rows[0]].append(rows)
-hl = list()
-for index in replays.iterkeys():
-
-    #if replays[index][0][1] is '3':
-     #   qm.append(replays[index])
-    if replays[index][0][1] is '4':
-        hl.append(replays[index])
-    #elif replays[index][0][1] is '5':
-     #   tl.append(replays[index])
-    #elif replays[index][0][1] is '6':
-     #   ud.append(replays[index])
-print "HL:", len(hl)
-pickle.dump(hl, open("hl_list.data", "wb"))
+hl = pickle.load(open("datasets/hl_list.data", "rb"))
 vectors = dict()
 i = 0
+noPotato = 0
 for replay in hl:
-    vectors[i] = [0.0] * 164
-    ID = replay[0][0]
-    MarkMap(replay[0][2],vectors[i])
+
+    Team1AvgMMR = 0.0
+    Team2AvgMMR = 0.0
     for player in replay[1:11]:
-        FillVectorHeroless(player, vectors[i], ID)
+        if str2bool(player[4]):
+            Team1AvgMMR += int(player[5]) if player[5] is not '' else 0
+        else:
+            Team2AvgMMR += int(player[5]) if player[5] is not '' else 0
+    Team2AvgMMR = (Team2AvgMMR / 5)
+    Team1AvgMMR = (Team1AvgMMR / 5)
+    if (Team1AvgMMR > 3200 or Team2AvgMMR > 3200) or (Team1AvgMMR < 2200 or Team2AvgMMR < 2200):
+        doNothing = 0
+    elif Team2AvgMMR is not 0.0 and Team1AvgMMR is not 0.0:
+        noPotato += 1
+        vectors[i] = [0.0] * 166
+        ID = replay[0][0]
+        MarkMap(replay[0][2], vectors[i])
+        for player in replay[1:11]:
+            FillVectorHeroless(player, vectors[i], ID)
+        Team2AvgMMR = math.log(Team2AvgMMR)
+        Team1AvgMMR = math.log(Team1AvgMMR)
+
+        if int(ID) % 2 is 0:
+            ##Team "1" won
+
+            vectors[i][164] = Team1AvgMMR
+            vectors[i][165] = Team2AvgMMR
+        else:
+            #Team "2" won
+            vectors[i][164] = Team2AvgMMR
+            vectors[i][165] = Team1AvgMMR
     i+=1
-f1 = open("datasets/hl_data_heroless.train", "wb")
-f2 = open("datasets/hl_data_heroless.dev", "wb")
+f1 = open("datasets/hl_data_heroless_midmmr.train", "wb")
+f2 = open("datasets/hl_data_heroless_midmmr.dev", "wb")
 for vector in vectors.itervalues():
     s = str(vector[0]) + " "
     i = 1
     for feature in vector[1:]:
-        if i is 163:
+        if i is 165:
             s += "" + str(i) + ":" + str(feature)
         else:
             s+= "" + str(i) + ":" + str(feature) + " "
@@ -1524,4 +1527,6 @@ for vector in vectors.itervalues():
         f2.write('\n')
 f1.close()
 f2.close()
+print noPotato
+
 
