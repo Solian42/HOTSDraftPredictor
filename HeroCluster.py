@@ -39,132 +39,144 @@ def getHeroStats():
             #10: Siege Dmg
             herostats[i][4] = float(toString(tds[10].text).replace(',',''))
             #11: Healing
-            herostats[i][5] = float(toString(tds[11].text).replace(',','')) if tds[11].text is not u'' else 0.0
+            try:
+                herostats[i][5] = float(toString(tds[11].text).replace(',',''))
+            except ValueError:
+                herostats[i][5] = 0.0
             #12: Self Heal
-            herostats[i][6] = float(toString(tds[12].text).replace(',','')) if tds[12].text is not u'' else 0.0
+            try:
+                herostats[i][6] = float(toString(tds[12].text).replace(',',''))
+            except ValueError:
+                herostats[i][6] = 0.0
             #13: Dmg Taken
-            herostats[i][7] = float(toString(tds[13].text).replace(',','')) if tds[13].text is not u'' else 0.0
+            try:
+                herostats[i][7] = float(toString(tds[13].text).replace(',','')) if tds[13].text != u'' else 0.0
+            except ValueError:
+                herostats[i][7] = 0.0
             #14: XP
-            herostats[i][8] = float(toString(tds[14]).replace(',',''))
+            try:
+                herostats[i][8] = float(toString(tds[14].text).replace(',',''))
+            except ValueError:
+                herostats[i][8] = 0.0
 
             # add merc stats manually
-            if tds[1] == "Abathur":
+            if toString(tds[1].text)== "Abathur":
                 herostats[i][9] = 0.0
-            elif tds[1] == "Alarak":
+            elif toString(tds[1].text)== "Alarak":
                 herostats[i][9] = 7.2
-            elif tds[1] == "Anub'arak":
+            elif toString(tds[1].text)== "Anub'arak":
                 herostats[i][9] = 10.1
-            elif tds[1] == "Artanis":
+            elif toString(tds[1].text)== "Artanis":
                 herostats[i][9] = 14.9
-            elif tds[1] == "Arthas":
+            elif toString(tds[1].text)== "Arthas":
                 herostats[i][9] = 18.0
-            elif tds[1] == "Auriel":
+            elif toString(tds[1].text)== "Auriel":
                 herostats[i][9] = 4.5
-            elif tds[1] == "Azmodan":
+            elif toString(tds[1].text)== "Azmodan":
                 herostats[i][9] = 5.1
-            elif tds[1] == "Brightwing":
+            elif toString(tds[1].text)== "Brightwing":
                 herostats[i][9] = 10.4
-            elif tds[1] == "Chen":
+            elif toString(tds[1].text)== "Chen":
                 herostats[i][9] = 9.1
-            elif tds[1] == "Cho":
+            elif toString(tds[1].text)== "Cho":
                 herostats[i][9] = 16.4
-            elif tds[1] == "Chromie":
+            elif toString(tds[1].text)== "Chromie":
                 herostats[i][9] = 0.6
-            elif tds[1] == "Dehaka":
+            elif toString(tds[1].text)== "Dehaka":
                 herostats[i][9] = 9.1
-            elif tds[1] == "Diablo":
+            elif toString(tds[1].text)== "Diablo":
                 herostats[i][9] = 13.7
-            elif tds[1] == "E.T.C.":
+            elif toString(tds[1].text)== "E.T.C.":
                 herostats[i][9] = 9.3
-            elif tds[1] == "Falstad":
+            elif toString(tds[1].text)== "Falstad":
                 herostats[i][9] = 6.5
-            elif tds[1] == "Gall":
+            elif toString(tds[1].text)== "Gall":
                 herostats[i][9] = 0.0
-            elif tds[1] == "Gazlowe":
+            elif toString(tds[1].text)== "Gazlowe":
                 herostats[i][9] = 46.2
-            elif tds[1] == "Greymane":
+            elif toString(tds[1].text)== "Greymane":
                 herostats[i][9] = 16.6
-            elif tds[1] == "Gul'dan":
+            elif toString(tds[1].text)== "Gul'dan":
                 herostats[i][9] = 4.9
-            elif tds[1] == "Illidan":
+            elif toString(tds[1].text)== "Illidan":
                 herostats[i][9] = 34.7
-            elif tds[1] == "Jaina":
+            elif toString(tds[1].text)== "Jaina":
                 herostats[i][9] = 9.3
-            elif tds[1] == "Johanna":
+            elif toString(tds[1].text)== "Johanna":
                 herostats[i][9] = 10.7
-            elif tds[1] == "Kael'thas":
+            elif toString(tds[1].text)== "Kael'thas":
                 herostats[i][9] = 5.4
-            elif tds[1] == "Kerrigan":
+            elif toString(tds[1].text)== "Kerrigan":
                 herostats[i][9] = 20.4
-            elif tds[1] == "Kharazim":
+            elif toString(tds[1].text)== "Kharazim":
                 herostats[i][9] = 18.1
-            elif tds[1] == "Leoric":
+            elif toString(tds[1].text)== "Leoric":
                 herostats[i][9] = 8.1
-            elif tds[1] == "Li Li":
+            elif toString(tds[1].text)== "Li Li":
                 herostats[i][9] = 4.1
-            elif tds[1] == "Li-Ming":
+            elif toString(tds[1].text)== "Li-Ming":
                 herostats[i][9] = 4.4
-            elif tds[1] == "Lt. Morales":
+            elif toString(tds[1].text)== "Lt. Morales":
                 herostats[i][9] = 1.9
-            elif tds[1] == "Lunara":
+            elif toString(tds[1].text)== "Lunara":
                 herostats[i][9] = 3.2
-            elif tds[1] == "Malfurion":
+            elif toString(tds[1].text)== "Malfurion":
                 herostats[i][9] = 4.8
-            elif tds[1] == "Medivh":
+            elif toString(tds[1].text)== "Medivh":
                 herostats[i][9] = 0.6
-            elif tds[1] == "Muradin":
+            elif toString(tds[1].text)== "Muradin":
                 herostats[i][9] = 8.9
-            elif tds[1] == "Murky":
+            elif toString(tds[1].text)== "Murky":
                 herostats[i][9] = 43.1
-            elif tds[1] == "Nazeebo":
+            elif toString(tds[1].text)== "Nazeebo":
                 herostats[i][9] = 11.8
-            elif tds[1] == "Nova":
+            elif toString(tds[1].text)== "Nova":
                 herostats[i][9] = 7.0
-            elif tds[1] == "Raynor":
+            elif toString(tds[1].text)== "Raynor":
                 herostats[i][9] = 4.2
-            elif tds[1] == "Rehgar":
+            elif toString(tds[1].text)== "Rehgar":
                 herostats[i][9] = 10.0
-            elif tds[1] == "Rexxar":
+            elif toString(tds[1].text)== "Rexxar":
                 herostats[i][9] = 23.0
-            elif tds[1] == "Samuro":
+            elif toString(tds[1].text)== "Samuro":
                 herostats[i][9] = 36.8
-            elif tds[1] == "Sgt. Hammer":
+            elif toString(tds[1].text)== "Sgt. Hammer":
                 herostats[i][9] = 1.3
-            elif tds[1] == "Sonya":
+            elif toString(tds[1].text)== "Sonya":
                 herostats[i][9] = 30.7
-            elif tds[1] == "Stitches":
+            elif toString(tds[1].text)== "Stitches":
                 herostats[i][9] = 6.9
-            elif tds[1] == "Sylvanas":
+            elif toString(tds[1].text)== "Sylvanas":
                 herostats[i][9] = 33.8
-            elif tds[1] == "Tassadar":
+            elif toString(tds[1].text)== "Tassadar":
                 herostats[i][9] = 2.6
-            elif tds[1] == "The Butcher":
+            elif toString(tds[1].text)== "The Butcher":
                 herostats[i][9] = 17.6
-            elif tds[1] == "The Lost Vikings":
+            elif toString(tds[1].text)== "The Lost Vikings":
                 herostats[i][9] = 82.2
-            elif tds[1] == "Thrall":
+            elif toString(tds[1].text)== "Thrall":
                 herostats[i][9] = 15.3
-            elif tds[1] == "Tracer":
+            elif toString(tds[1].text)== "Tracer":
                 herostats[i][9] = 5.6
-            elif tds[1] == "Tychus":
+            elif toString(tds[1].text)== "Tychus":
                 herostats[i][9] = 4.3
-            elif tds[1] == "Tyrael":
+            elif toString(tds[1].text)== "Tyrael":
                 herostats[i][9] = 10.3
-            elif tds[1] == "Tyrande":
+            elif toString(tds[1].text)== "Tyrande":
                 herostats[i][9] = 1.8
-            elif tds[1] == "Uther":
+            elif toString(tds[1].text)== "Uther":
                 herostats[i][9] = 6.0
-            elif tds[1] == "Valla":
+            elif toString(tds[1].text)== "Valla":
                 herostats[i][9] = 5.7
-            elif tds[1] == "Varian":
+            elif toString(tds[1].text)== "Varian":
                 herostats[i][9] = 20.6
-            elif tds[1] == "Xul":
+            elif toString(tds[1].text)== "Xul":
                 herostats[i][9] = 10.2
-            elif tds[1] == "Zagara":
+            elif toString(tds[1].text)== "Zagara":
                 herostats[i][9] = 17.3
-            elif tds[1] == "Zarya":
+            elif toString(tds[1].text)== "Zarya":
                 herostats[i][9] = 8.8
-            elif tds[1] == "Zeratul":
+            elif toString(tds[1].text)== "Zeratul":
                 herostats[i][9] = 7.0
             else:
                 print "Oh shit..."
@@ -287,4 +299,4 @@ def findOptK(n, kmin, kmax, normStats):
     return k
         
                 
-        
+getHeroStats()
