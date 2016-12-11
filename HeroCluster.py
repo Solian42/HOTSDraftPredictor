@@ -29,24 +29,23 @@ def getHeroStats():
             #05: T/D
             #herostats[i][5] = float(toString(tds[5].text))
             #06: Takedowns
-            print tds[6]
-            herostats[i][0] = float(toString(tds[6].text))
+            herostats[i][0] = float(toString(tds[6].text).replace(',',''))
             #07: Kills
-            herostats[i][1] = float(toString(tds[7].text))
+            herostats[i][1] = float(toString(tds[7].text).replace(',',''))
             #08: Deaths
-            herostats[i][2] = float(toString(tds[8].text))
+            herostats[i][2] = float(toString(tds[8].text).replace(',',''))
             #09: Hero Dmg
-            herostats[i][3] = float(toString(tds[9].text))
+            herostats[i][3] = float(toString(tds[9].text).replace(',',''))
             #10: Siege Dmg
-            herostats[i][4] = float(toString(tds[10].text))
+            herostats[i][4] = float(toString(tds[10].text).replace(',',''))
             #11: Healing
-            herostats[i][5] = float(toString(tds[11].text)) if tds[11].text is not None else 0.0
+            herostats[i][5] = float(toString(tds[11].text).replace(',','')) if tds[11].text is not u'' else 0.0
             #12: Self Heal
-            herostats[i][6] = float(toString(tds[12].text)) if tds[12].text is not None else 0.0
+            herostats[i][6] = float(toString(tds[12].text).replace(',','')) if tds[12].text is not u'' else 0.0
             #13: Dmg Taken
-            herostats[i][7] = float(toString(tds[13].text)) if tds[13].text is not None else 0.0
+            herostats[i][7] = float(toString(tds[13].text).replace(',','')) if tds[13].text is not u'' else 0.0
             #14: XP
-            herostats[i][8] = float(toString(tds[14]))
+            herostats[i][8] = float(toString(tds[14]).replace(',',''))
 
             # add merc stats manually
             if tds[1] == "Abathur":
