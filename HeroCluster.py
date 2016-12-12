@@ -15,13 +15,14 @@ def getHeroStats():
     soup = BeautifulSoup(r.text, 'lxml')
 
     table = soup.find()
-    herostats = np.zeros(10)
+    herostats = np.zeros((2,10))
+    heroList = []
     i = 0
     for tr in soup.find_all('tr')[2:]:
         tds = tr.find_all('td')
         if len(tds) is 15:
             #01: Hero
-            #herostats[i][1] = toString(tds[1].text)
+            heroList.append(toString(tds[1].text))
             #02: Games
             #herostats[i][2] = float(toString(tds[2].text))
             #03: Win %
@@ -91,7 +92,7 @@ def getHeroStats():
             elif toString(tds[1].text)== "Falstad":
                 herostats[i][9] = 6.5
             elif toString(tds[1].text)== "Gall":
-                herostats[i][9] = 0.0
+                herostats[i][9] = 16.4
             elif toString(tds[1].text)== "Gazlowe":
                 herostats[i][9] = 46.2
             elif toString(tds[1].text)== "Greymane":
@@ -181,51 +182,47 @@ def getHeroStats():
             else:
                 print "Oh shit..."
                 print tds[1]
-        i+= 1
-        herostats = np.vstack([herostats, np.zeros(10)])
+            i+= 1
+            herostats = np.vstack([herostats, np.zeros(10)])
 
     
-    herostats = np.delete(herostats, herostats.shape - 1, 0)
+    herostats = np.delete(herostats, herostats.shape[0] - 1, 0)
+    herostats = np.delete(herostats, herostats.shape[0] - 1, 0)
     
-    return herostats
+    return [heroList, herostats]
 
 def normalizeStats(herostats):
     # normalizes all stats to between 0 and 1000
     # keys for output are 0 to 8
 
-    numHeroes = max(herostats.keys()) + 1
+    numHeroes = herostats.shape[0]
 
-    normStats = np.zeros((numHeroes, 10))
+    normStats = np.zeros(herostats.shape)
     
-    minStats = np.zeros(10)
-    maxStats = np.zeros(10)
-
-    # set min/max to values of first hero's stats
-    for i in range(10):
-        minStats[i] = herostats[0][i+6]
-        maxStats[i] = herostats[0][i+6]
+    minStats = np.copy(herostats[0])
+    maxStats = np.copy(herostats[0])
     
     # find min/max value for each stat
     for i in range(1, numHeroes):
         for j in range(10):
-            if herostats[i][j+6] > maxStats[j]:
-                maxStats[j] = herostats[i][j+6]
-            elif herostats[i][j+6] < minStats[j]:
-                minStats[j] = herostats[i][j+6]
+            if herostats[i][j] > maxStats[j]:
+                maxStats[j] = herostats[i][j]
+            elif herostats[i][j] < minStats[j]:
+                minStats[j] = herostats[i][j]
 
     # subtract minValue from each stat to set min for each stat to 0
     for i in range(1, numHeroes):
         for j in range(10):
-            normStats[i][j] = herostats[i][j+6] - minStats[j]
+            normStats[i][j] = herostats[i][j] - minStats[j]
 
     # subtract minValue from maxValue to get range for each stat
     for j in range(10):
-        maxValue[j] = maxValue[j] - minValue[j]
+        maxStats[j] = maxStats[j] - minStats[j]
 
     # divide each stat by range and multiply by 1000 to normalize
     for i in range(1, numHeroes):
         for j in range(10):
-            normStats[i][j] = 1000 * normStats[i][j]/maxValue[j]
+            normStats[i][j] = 1000 * normStats[i][j]/maxStats[j]
 
     return normStats
 
@@ -237,13 +234,13 @@ def genSplit(normStats, i, k):
         print "Invalid split value!"
         return
 
-    numHeroes = max(herostats.keys()) + 1
+    numHeroes = normStats.shape[0]
     splitSize = numHeroes/k
     if i < numHeroes%k:
         splitSize += 1
     
-    testData = np.zeros((numHeroes-splitSize, 10))
-    trainData = np.zeroes((splitSize, 10))
+    testData = np.zeros((splitSize, 10))
+    trainData = np.zeros((numHeroes-splitSize, 10))
     testKey = 0
     trainKey = 0
 
@@ -292,11 +289,44 @@ def findOptK(n, kmin, kmax, normStats):
             currError += splitError/numSamples
 
         avgError = currError/n
-        if avgError < minError:
+        if avgError < 0.95 * minError:
+            # only adjust if we can make at least a 5% improvement in error
             minError = avgError
             optK = k
+        elif avgError > 1.05*minError:
+            # assume we are overfitting in this case
+            # larger k values would also overfit
+            break
 
-    return k
+    return optK
         
-                
-getHeroStats()
+def findClusters():
+    # fetch average hero statistics from hotslogs
+    [heroList, herostats] = getHeroStats()
+
+    numHeroes = len(heroList)
+
+    # normalize stats so weighted equally in clustering
+    normStats = normalizeStats(herostats)
+
+    # choose a k value
+    k = findOptK(10, 8, 15, normStats)
+
+    heroClusters = dict()
+    for i in range(k):
+        heroClusters[i] = []
+
+    # run k means clustering on full data set using k value found above
+    kmeans = KMeans(n_clusters = k).fit(normStats)
+
+    # figure out which hero is in which cluster (for human readability)
+    for j in range(numHeroes):
+        heroClusters[kmeans.labels_[j]].append(heroList[j])
+
+    for i in range(k):
+        print "Cluster ", i, ": ", heroClusters[i]
+
+    return heroClusters
+        
+
+
