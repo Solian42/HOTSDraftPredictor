@@ -16,7 +16,7 @@
 
 algorithm=(neural_network logistic_regression knn svm)
 #your possible datasetssets
-options=(hl_data_hero_only_midmmr hl_data_detailed_highmmr hl_data_hero_only_highmmr hl_data_heroless_highmmr pro_data masters_data masters_data_extra masters_data_heroless hl_data_hero_only hl_data_detailed)
+options=(hl_data_hero_only_highmmr hl_data_hero_ingame_highmmr hl_data_ingame_only_highmmr hl_data_hotslogs_only_highmmr hl_data_handmade_only_highmmr hl_data_cluster_only_highmmr hl_data_hero_cluster_highmmr hl_data_hero_handmade_highmmr hl_data_hero_hotslogs_highmmr hl_data_hero_ingame_hotslogs_highmmr hl_data_hero_ingame_handmade_highmmr hl_data_hero_ingame_cluster_highmmr hl_data_ingame_cluster_highmmr hl_data_ingame_handmade_highmmr hl_data_ingame_hotslogs_highmmr)
 
 for opt in "${options[@]}"; do
     for algo in "${algorithm[@]}"; do

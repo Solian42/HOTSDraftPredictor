@@ -7,7 +7,7 @@ def str2bool(v):
   return v.lower() in ("yes", "true", "t", "1")
 
 
-def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
+def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtype):
     # replayDict contains scraped data for a single player in a replay
     # vector is the feature vector so far
     # ID is the replay ID on hotslogs
@@ -732,7 +732,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
                 vector[58] = 1.0
             if gameClass:
                 vector[120] += 1.0
-           if subtype == 1:
+            if subtype == 1:
                 vector[136] += 1.0
             elif subtype == 2:
                 vector[138] += 1.0
@@ -1498,7 +1498,7 @@ def MarkMap(mapName, vector):
 
 
 
-hl = pickle.load(open("datasets/hl_list.data", "rb"))
+hl = pickle.load(open("datasets/hl_highmmr_list.data", "rb"))
 vectors = dict()
 i = 0
 noPotato = 0
@@ -1513,45 +1513,57 @@ for replay in hl:
             Team2AvgMMR += int(player[5]) if player[5] is not '' else 0
     Team2AvgMMR = (Team2AvgMMR / 5)
     Team1AvgMMR = (Team1AvgMMR / 5)
-    if (Team1AvgMMR > 3200 or Team2AvgMMR > 3200) or (Team1AvgMMR < 2200 or Team2AvgMMR < 2200):
+    if (Team1AvgMMR < 3200 or Team2AvgMMR < 3200):
         doNothing = 0
     elif Team2AvgMMR is not 0.0 and Team1AvgMMR is not 0.0:
         noPotato += 1
-        vectors[i] = [0.0] * 166
+        vectors[i] = [0.0] * 174
         ID = replay[0][0]
         MarkMap(replay[0][2], vectors[i])
         for player in replay[1:11]:
-            FillVectorHeroless(player, vectors[i], ID)
+            # replayDict contains scraped data for a single player in a replay
+            # vector is the feature vector so far
+            # ID is the replay ID on hotslogs
+            # heroes is a bool; if True include individual hero features
+            # gameClass is a bool; if True include feature for in game classification
+            # subtype takes a value
+            #       0: no subtypes
+            #       1: hotslogs subtypes
+            #       2: our subtypes
+            #       3: cluster subtypes
+            FillVectorDetailed(player, vectors[i], ID, False, True, 1)
         Team2AvgMMR = math.log(Team2AvgMMR)
         Team1AvgMMR = math.log(Team1AvgMMR)
 
         if int(ID) % 2 is 0:
             ##Team "1" won
 
-            vectors[i][164] = Team1AvgMMR
-            vectors[i][165] = Team2AvgMMR
+            vectors[i][172] = Team1AvgMMR
+            vectors[i][173] = Team2AvgMMR
         else:
             #Team "2" won
-            vectors[i][164] = Team2AvgMMR
-            vectors[i][165] = Team1AvgMMR
+            vectors[i][172] = Team2AvgMMR
+            vectors[i][173] = Team1AvgMMR
     i+=1
-f1 = open("datasets/hl_data_heroless_midmmr.train", "wb")
-f2 = open("datasets/hl_data_heroless_midmmr.dev", "wb")
+f1 = open("datasets/hl_data_ingame_hotslogs_highmmr.train", "wb")
+f2 = open("datasets/hl_data_ingame_hotslogs_highmmr.dev", "wb")
+j = 0
 for vector in vectors.itervalues():
     s = str(vector[0]) + " "
     i = 1
     for feature in vector[1:]:
-        if i is 165:
+        if i is 173:
             s += "" + str(i) + ":" + str(feature)
         else:
             s+= "" + str(i) + ":" + str(feature) + " "
         i += 1
-    if random.randint(0, 10) % 10 != 0:
+    if j % 10 != 0:
         f1.write(s)
         f1.write('\n')
     else:
         f2.write(s)
         f2.write('\n')
+    j+= 1
 f1.close()
 f2.close()
 print noPotato

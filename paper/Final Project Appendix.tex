@@ -1,0 +1,112 @@
+\documentclass[11pt,letterpaper]{article}
+
+\begin{document}
+\section*{Appendix}
+
+\subsection*{$k$-Means Clustering Subclassification}
+
+\begin{itemize}
+\item \textbf{Cluster 0:} The Lost Vikings
+\item \textbf{Cluster 1:} Leoric, Arthas, Sonya, Chen, Stitches, Anub'arak, Dehaka, Johanna, Cho, Muradin, E.T.C 
+\item \textbf{Cluster 2:} Abathur, Azmodan, Gazlowe, Murky, Nazeebo, Sylvanas, Xul, Zagara
+\item \textbf{Cluster 3:} Alarak, Chromie, Falstad, Greymane, Gul'dan, Jaina, Kael'thas, Li-Ming, Lunara, Raynor, Samuro, Tychus, Valla, Sgt. Hammer, Medivh
+\item \textbf{Cluster 4:} The Lost Vikings
+\item \textbf{Cluster 5:} Auriel, Brightwing, Kharazim, Li Li, Lt. Morales, Malfurion, Rehgar, Tassadar, Tyrande, Uther
+\item \textbf{Cluster 6:} Artanis, Zarya, Diablo, Varian, Rexxar, Tyrael
+\item \textbf{Cluster 7:} Gall
+\item \textbf{Cluster 8:} Illidan, Kerrigan, Thrall
+\end{itemize}
+
+\subsection*{Win/Loss Predictor Results}
+
+\begin{tabular}{c|c|c|c|c}
+\textbf{Heroes} & \textbf{In-game classes} & \textbf{Subclasses} & \textbf{Algorithm} & \textbf{Accuracy} \\
+\hline
+Yes & No & None & Neural Network & $50.1\% (441/879)$ \\
+Yes & No & None & KNN & $48.7\% (428/879)$ \\
+Yes & No & None & SVM & $53.7\% (472/879)$ \\
+Yes & No & None & Logistic Regression & $55.3\% (486/879)$ \\
+
+Yes & Yes & None & Neural Network & $52.3\% (460/879)$ \\
+Yes & Yes & None & KNN & $50.3\% (442/879)$ \\
+Yes & Yes & None & SVM & $53.9\% (474/879)$ \\
+Yes & Yes & None & Logistic Regression & $55.3\% (486/879)$ \\
+
+No & Yes & None & Neural Network & $48.5\% (426/879)$ \\
+No & Yes & None & KNN & $48.9\% (430/879)$ \\
+No & Yes & None & SVM & $50.8\% (446/879)$ \\
+No & Yes & None & Logistic Regression & $49.9\% (439/879)$ \\
+\end{tabular}
+
+\noindent\begin{tabular}{c|c|c|c|c}
+\textbf{Heroes} & \textbf{In-game classes} & \textbf{Subclasses} & \textbf{Algorithm} & \textbf{Accuracy} \\
+\hline
+
+No & No & HotsLogs & Neural Network & $51.9\% (456/879)$ \\
+No & No & HotsLogs & KNN & $51.6\% (454/879)$ \\
+No & No & HotsLogs & SVM & $50.9\% (447/879)$ \\
+No & No & HotsLogs & Logistic Regression & $51.4\% (452/879)$ \\
+
+No & No & Handmade & Neural Network & $50.3\% (442/879)$ \\
+No & No & Handmade & KNN & $51.4\% (452/879)$ \\
+No & No & Handmade & SVM & $52.2\% (459/879)$ \\
+No & No & Handmade & Logistic Regression & $51.5\% (453/879)$ \\
+
+No & No & Clusters & Neural Network & $50.2\% (441/879)$ \\
+No & No & Clusters & KNN & $49.2\% (433/879)$ \\
+No & No & Clusters & SVM & $51.2\% (450/879)$ \\
+No & No & Clusters & Logistic Regression & $52.2\% (459/879)$ \\
+
+Yes & No & Clusters & Neural Network & $49.9\% (439/879)$ \\
+Yes & No & Clusters & KNN & $51.6\% (454/879)$ \\
+Yes & No & Clusters& SVM & $54.1\% (476/879)$ \\
+Yes & No & Clusters & Logistic Regression & $55.6\% (489/879)$ \\
+
+Yes & No & Handmade & Neural Network & $49.8\% (438/879)$ \\
+Yes & No & Handmade & KNN & $52.0\% (457/879)$ \\
+Yes & No & Handmade & SVM & $53.8\% (473/879)$ \\
+Yes & No & Handmade & Logistic Regression & $55.4\% (487/879)$ \\
+
+Yes & No & HotsLogs & Neural Network & $49.4\% (435/879)$ \\
+Yes & No & HotsLogs & KNN & $52.3\% (460/879)$ \\
+Yes & No & HotsLogs & SVM & $54.2\% (476/879)$ \\
+Yes & No & HotsLogs & Logistic Regression & $55.5\% (488/879)$ \\
+
+Yes & Yes & HotsLogs & Neural Network & $49.7\% (437/879)$ \\
+Yes & Yes & HotsLogs & KNN & $51.9\% (456/879)$ \\
+Yes & Yes & HotsLogs & SVM & $53.9\% (474/879)$ \\
+Yes & Yes & HotsLogs & Logistic Regression & $55.4\% (487/879)$ \\
+
+Yes & Yes & Handmade & Neural Network & $50.5\% (444/879)$ \\
+Yes & Yes & Handmade & KNN & $51.4\% (452/879)$ \\
+Yes & Yes & Handmade & SVM & $54.0\% (475/879)$ \\
+Yes & Yes & Handmade & Logistic Regression & $55.5\% (488/879)$ \\
+
+Yes & Yes & Clusters & Neural Network & $50.6\% (445/879)$ \\
+Yes & Yes &  Clusters & KNN & $49.9\% (439/879)$ \\
+Yes & Yes &  Clusters & SVM & $54.2\% (476/879)$ \\
+Yes & Yes &  Clusters & Logistic Regression & $55.5\% (488/879)$ \\
+\end{tabular}
+\noindent\begin{tabular}{c|c|c|c|c}
+\textbf{Heroes} & \textbf{In-game classes} & \textbf{Subclasses} & \textbf{Algorithm} & \textbf{Accuracy} \\
+\hline
+
+
+
+
+No & Yes & Clusters & Neural Network & $51.0\% (448/879)$ \\
+No & Yes & Clusters & KNN & $50.2\% (442/879)$ \\
+No & Yes &Clusters& SVM & $51.8\% (456/879)$ \\
+No & Yes & Clusters & Logistic Regression & $52.3\% (460/879)$ \\
+
+No & Yes & Handmade & Neural Network & $53.4\% (469/879)$ \\
+No & Yes & Handmade & KNN & $53.2\% (468/879)$ \\
+No & Yes & Handmade & SVM & $52.4\% (461/879)$ \\
+No & Yes & Handmade & Logistic Regression & $51.0\% (448/879)$ \\
+
+No & Yes & HotsLogs & Neural Network & $50.4\% (443/879)$ \\
+No & Yes & HotsLogs & KNN & $50.6\% (445/879)$ \\
+No & Yes & HotsLogs & SVM & $50.6\% (445/879)$ \\
+No & Yes & HotsLogs & Logistic Regression & $50.4\% (443/879)$ \\
+\end{tabular}
+\end{document}

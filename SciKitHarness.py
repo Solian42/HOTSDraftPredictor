@@ -68,7 +68,7 @@ def get_args():
     parser.add_argument("--knn", type=int, help="The value of K for KNN classification.",
                         default=5)
     parser.add_argument("--svm-kernel", type=str, help="The kernel to use for SVM classification",
-                        default='linear')
+                        default='poly')
     args = parser.parse_args()
     check_args(args)
 
