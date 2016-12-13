@@ -1,0 +1,55 @@
+Playing to Win: Machine Learning for Drafting in Games
+for 600.475
+
+Authors:
+Elizabeth Reiland
+ereiland (at) jhu.edu
+
+Tristan Orton-Urbina
+tortonu1 (at) jhu.edu
+
+
+WARNING: ALL DATA PUBLICLY AVALIBLE IS NOT CONTAINED IN THIS REPO DUE TO SIZE CONSTRAINTS!
+
+
+Heroes of the Storm is a Multiplayer Online Battle Arena (MOBA) game in the same
+genre as the more well known League of Legends or DOTA 2. Each game consists of two teams 
+of five players each working together to outplay their opponents by means of fights and 
+objectives, ultimately destroying the opposing team's core structure. This project 
+documents our attempt to predict which team won a particular game using several machine-
+learning algorithms based on various features, with the primary focus being on which 
+heroes were drafted by each team.
+ 
+ 
+Source code guide:
+compute_accuracy.py: Given a prediction file and a test file, computes the accuracy.
+
+DraftPredictor.py: given a map, 4 heroes on your team and 5 on the other, predicts what
+HotsLogs subclass you should draft.
+
+GetProGames.py: Queries hotslogs API and turns JSON into dictionaries.
+
+HeroCluster.py: Contains functions for k-means clustering on hero subtypes.
+
+HighMMRFilter.py: Takes a list of replays from HotsCSVToList and filters out all games 
+below 3200 MMR
+
+HotsCSVParser.py: Takes a list generated from HotsCSVToList and HighMMRFilter and turns it
+into vectors for use with algorithms
+
+HotsCSVToList.py: Transform the HotsLogs CSV data into a list to better work with Python.
+
+ProVectorizer.py: Takes pro games and turns them into vectors.
+
+ReplayContainerParser.py: Parses the replay containers from HotsLogs into their 
+components.
+
+ReplayScraper.py: Uses BeautifulSoup to scrape all games in season 2 from the top 100 HL 
+players and dumps them into a dict.
+
+SciKitHarness.py: Main harness for traning/testing algorithms. Takes in what algorithm
+you want to use, what dataset you want to use it on, and to train or test on that dataset.
+
+ScrapedVectorizer.py: turns scraped games from ReplayScraper into vectors
+
+test.sh: bash script for running algorithms on pre-generated training/testing data
