@@ -289,7 +289,7 @@ def findOptK(n, kmin, kmax, normStats):
             currError += splitError/numSamples
 
         avgError = currError/n
-        if avgError < 0.95 * minError:
+        if avgError < 0.9 * minError:
             # only adjust if we can make at least a 5% improvement in error
             minError = avgError
             optK = k
@@ -310,7 +310,7 @@ def findClusters():
     normStats = normalizeStats(herostats)
 
     # choose a k value
-    k = findOptK(10, 8, 15, normStats)
+    k = findOptK(10, 1, 15, normStats)
 
     heroClusters = dict()
     for i in range(k):

@@ -148,7 +148,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[153] += 1.0
             elif subtype == 3:
-                vector[147] += 1.0
+                vector[141] += 1.0
         else:
             if heroes:
                 vector[10] = 1.0
@@ -159,7 +159,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[154] += 1.0
             elif subtype == 3:
-                vector[148] += 1.0
+                vector[142] += 1.0
     elif name == "54":
         # Gul'dan
         if didWin:
@@ -340,7 +340,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[145] += 1.0
             elif subtype == 3:
-                vector[157] += 1.0
+                vector[143] += 1.0
         else:
             if heroes:
                 vector[26] = 1.0
@@ -351,7 +351,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[146] += 1.0
             elif subtype == 3:
-                vector[158] += 1.0
+                vector[144] += 1.0
     elif name == '24':
         # Raynor
         if didWin:
@@ -388,7 +388,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[151] += 1.0
             elif subtype == 3:
-                vector[147] += 1.0
+                vector[141] += 1.0
         else:
             if heroes:
                 vector[30] = 1.0
@@ -399,7 +399,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[152] += 1.0
             elif subtype == 3:
-                vector[148] += 1.0
+                vector[142] += 1.0
     elif name == '31':
         # The Butcher
         if didWin:
@@ -412,7 +412,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[151] += 1.0
             elif subtype == 3:
-                vector[147] += 1.0
+                vector[143] += 1.0
         else:
             if heroes:
                 vector[32] = 1.0
@@ -423,7 +423,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[152] += 1.0
             elif subtype == 3:
-                vector[148] += 1.0
+                vector[144] += 1.0
     elif name == '33':
         # Thrall
         if didWin:
@@ -460,7 +460,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[151] += 1.0
             elif subtype == 3:
-                vector[157] += 1.0
+                vector[143] += 1.0
         else:
             if heroes:
                 vector[36] = 1.0
@@ -471,7 +471,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[152] += 1.0
             elif subtype == 3:
-                vector[158] += 1.0
+                vector[144] += 1.0
     elif name == '34':
         # Tychus
         if didWin:
@@ -533,7 +533,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[139] += 1.0
             elif subtype == 3:
-                vector[137] += 1.0
+                vector[147] += 1.0
         else:
             if heroes:
                 vector[42] = 1.0
@@ -545,7 +545,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[140] += 1.0
             elif subtype == 3:
-                vector[138] += 1.0
+                vector[148] += 1.0
     elif name == '40':
         # Zeratul
         if didWin:
@@ -558,7 +558,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[153] += 1.0
             elif subtype == 3:
-                vector[157] += 1.0
+                vector[143] += 1.0
         else:
             if heroes:
                 vector[44] = 1.0
@@ -569,7 +569,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[154] += 1.0
             elif subtype == 3:
-                vector[158] += 1.0
+                vector[144] += 1.0
     elif name == "2":
         # Anub'arak
         if didWin:
@@ -606,7 +606,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[139] += 1.0
             elif subtype == 3:
-                vector[155] += 1.0
+                vector[147] += 1.0
         else:
             if heroes:
                 vector[48] = 1.0
@@ -617,7 +617,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[140] += 1.0
             elif subtype == 3:
-                vector[156] += 1.0
+                vector[148] += 1.0
     elif name == "3":
         # Arthas
         if didWin:
@@ -654,7 +654,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[137] += 1.0
             elif subtype == 3:
-                vector[153] += 1.0
+                vector[137] += 1.0
         else:
             if heroes:
                 vector[52] = 1.0
@@ -665,7 +665,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[138] += 1.0
             elif subtype == 3:
-                vector[154] += 1.0
+                vector[138] += 1.0
     elif name == '44':
         # Cho
         if didWin:
@@ -678,7 +678,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[135] += 1.0
             elif subtype == 3:
-                vector[153] += 1.0
+                vector[137] += 1.0
         else:
             if heroes:
                 vector[54] = 1.0
@@ -689,7 +689,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[136] += 1.0
             elif subtype == 3:
-                vector[154] += 1.0
+                vector[138] += 1.0
     elif name == '50':
         # Dehaka
         if didWin:
@@ -726,7 +726,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[137] += 1.0
             elif subtype == 3:
-                vector[155] += 1.0
+                vector[147] += 1.0
         else:
             if heroes:
                 vector[58] = 1.0
@@ -737,7 +737,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[138] += 1.0
             elif subtype == 3:
-                vector[156] += 1.0
+                vector[148] += 1.0
     elif name == '8':
         # E.T.C.
         if didWin:
@@ -750,7 +750,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[135] += 1.0
             elif subtype == 3:
-                vector[153] += 1.0
+                vector[137] += 1.0
         else:
             if heroes:
                 vector[60] = 1.0
@@ -761,7 +761,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[136] += 1.0
             elif subtype == 3:
-                vector[154] += 1.0
+                vector[138] += 1.0
     elif name == '13':
         # Johanna
         if didWin:
@@ -774,7 +774,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[135] += 1.0
             elif subtype == 3:
-                vector[153] += 1.0
+                vector[137] += 1.0
         else:
             if heroes:
                 vector[62] = 1.0
@@ -785,7 +785,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[136] += 1.0
             elif subtype == 3:
-                vector[154] += 1.0
+                vector[138] += 1.0
     elif name == '17':
         # Leoric
         if didWin:
@@ -822,7 +822,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[135] += 1.0
             elif subtype == 3:
-                vector[153] += 1.0
+                vector[137] += 1.0
         else:
             if heroes:
                 vector[66] = 1.0
@@ -833,7 +833,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[136] += 1.0
             elif subtype == 3:
-                vector[154] += 1.0
+                vector[138] += 1.0
     elif name == '41':
         # Rexxar
         if didWin:
@@ -846,7 +846,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[137] += 1.0
             elif subtype == 3:
-                vector[155] += 1.0
+                vector[147] += 1.0
         else:
             if heroes:
                 vector[68] = 1.0
@@ -857,7 +857,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[138] += 1.0
             elif subtype == 3:
-                vector[156] += 1.0
+                vector[148] += 1.0
     elif name == '27':
         # Sonya
         if didWin:
@@ -894,7 +894,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[135] += 1.0
             elif subtype == 3:
-                vector[153] += 1.0
+                vector[137] += 1.0
         else:
             if heroes:
                 vector[72] = 1.0
@@ -905,7 +905,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[136] += 1.0
             elif subtype == 3:
-                vector[154] += 1.0
+                vector[138] += 1.0
     elif name == '35':
         # Tyrael
         if didWin:
@@ -918,7 +918,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[137] += 1.0
             elif subtype == 3:
-                vector[155] += 1.0
+                vector[147] += 1.0
         else:
             if heroes:
                 vector[74] = 1.0
@@ -929,7 +929,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[138] += 1.0
             elif subtype == 3:
-                vector[156] += 1.0
+                vector[148] += 1.0
     elif name == '57':
         # Zarya
         if didWin:
@@ -942,7 +942,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[137] += 1.0
             elif subtype == 3:
-                vector[155] += 1.0
+                vector[147] += 1.0
         else:
             if heroes:
                 vector[76] = 1.0
@@ -953,7 +953,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[138] += 1.0
             elif subtype == 3:
-                vector[156] += 1.0
+                vector[148] += 1.0
     elif name == '55':
         # Auriel
         if didWin:
@@ -1158,7 +1158,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[157] += 1.0
             elif subtype == 3:
-                vector[135] += 1.0
+                vector[145] += 1.0
         else:
             if heroes:
                 vector[94] = 1.0
@@ -1169,7 +1169,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[158] += 1.0
             elif subtype == 3:
-                vector[136] += 1.0
+                vector[146] += 1.0
     elif name == '37':
         # Uther
         if didWin:
@@ -1278,7 +1278,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[157] += 1.0
             elif subtype == 3:
-                vector[135] += 1.0
+                vector[141] += 1.0
         else:
             if heroes:
                 vector[104] = 1.0
@@ -1289,7 +1289,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[158] += 1.0
             elif subtype == 3:
-                vector[136] += 1.0
+                vector[142] += 1.0
     elif name == '21':
         # Murky
         if didWin:
@@ -1398,7 +1398,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[159] += 1.0
             elif subtype == 3:
-                vector[143] += 1.0
+                vector[135] += 1.0
         else:
             if heroes:
                 vector[114] = 1.0
@@ -1409,7 +1409,7 @@ def FillVectorDetailed(replayDict, vector, ID, heroes, gameClass, subtypes):
             elif subtype == 2:
                 vector[160] += 1.0
             elif subtype == 3:
-                vector[144] += 1.0
+                vector[136] += 1.0
     elif name == '49':
         # Xul
         if didWin:
