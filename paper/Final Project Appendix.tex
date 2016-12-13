@@ -17,6 +17,25 @@
 \item \textbf{Cluster 8:} Illidan, Kerrigan, Thrall
 \end{itemize}
 
+\subsection*{Handmade Hero Classifications}
+\begin{itemize}
+\item \textbf{EXP Soak:}  Abathur, The Lost Vikings
+\item \textbf{Burst Damage:} Chromie, Jaina, Kael'thas, Li-Ming, Nova
+\item \textbf{Auto Attack Sustained:}  Raynor, Valla, Lunara, Tychus
+\item \textbf{Ability Sustained:} Nazeebo, Gul'dan, Gall, Falstad
+\item \textbf{Sustained Dive:}  Tracer, Illidan, Samuro, The Butcher
+\item \textbf{Burst Dive:} Zeratul, Greymane, Kerrigan, Alarak
+\item \textbf{Siege:} Azmodan, Gazlowe, Xul, Sylvanas, Zagara, Sgt. Hammer, Murky
+\item \textbf{Tank:} Johanna, ETC, Muradin, Cho, Stitches
+\item \textbf{Off-tank:} Leoric, Anub'arak, Dehaka, Zarya, Rexxar, Tyrael, Arthas, Chen, Diablo
+\item \textbf{Bruiser:} Sonya, Thrall, Artanis
+\item \textbf{Burst Heal:} Auriel, Uther, Rehgar
+\item \textbf{Sustained Heal:} Brightwing, Malfurion, Lt. Morales, Lili, Kharazim
+\item \textbf{Utility Support:}  Tassadar, Medivh, Tyrande
+\item \textbf{Multi-Role:} Varian
+\end{itemize}
+
+
 \subsection*{Win/Loss Predictor Results}
 
 \begin{tabular}{c|c|c|c|c}
@@ -36,11 +55,6 @@ No & Yes & None & Neural Network & $48.5\% (426/879)$ \\
 No & Yes & None & KNN & $48.9\% (430/879)$ \\
 No & Yes & None & SVM & $50.8\% (446/879)$ \\
 No & Yes & None & Logistic Regression & $49.9\% (439/879)$ \\
-\end{tabular}
-
-\noindent\begin{tabular}{c|c|c|c|c}
-\textbf{Heroes} & \textbf{In-game classes} & \textbf{Subclasses} & \textbf{Algorithm} & \textbf{Accuracy} \\
-\hline
 
 No & No & HotsLogs & Neural Network & $51.9\% (456/879)$ \\
 No & No & HotsLogs & KNN & $51.6\% (454/879)$ \\
@@ -56,6 +70,13 @@ No & No & Clusters & Neural Network & $50.2\% (441/879)$ \\
 No & No & Clusters & KNN & $49.2\% (433/879)$ \\
 No & No & Clusters & SVM & $51.2\% (450/879)$ \\
 No & No & Clusters & Logistic Regression & $52.2\% (459/879)$ \\
+\end{tabular}
+
+\noindent\begin{tabular}{c|c|c|c|c}
+\textbf{Heroes} & \textbf{In-game classes} & \textbf{Subclasses} & \textbf{Algorithm} & \textbf{Accuracy} \\
+\hline
+
+
 
 Yes & No & Clusters & Neural Network & $49.9\% (439/879)$ \\
 Yes & No & Clusters & KNN & $51.6\% (454/879)$ \\
@@ -86,13 +107,6 @@ Yes & Yes & Clusters & Neural Network & $50.6\% (445/879)$ \\
 Yes & Yes &  Clusters & KNN & $49.9\% (439/879)$ \\
 Yes & Yes &  Clusters & SVM & $54.2\% (476/879)$ \\
 Yes & Yes &  Clusters & Logistic Regression & $55.5\% (488/879)$ \\
-\end{tabular}
-\noindent\begin{tabular}{c|c|c|c|c}
-\textbf{Heroes} & \textbf{In-game classes} & \textbf{Subclasses} & \textbf{Algorithm} & \textbf{Accuracy} \\
-\hline
-
-
-
 
 No & Yes & Clusters & Neural Network & $51.0\% (448/879)$ \\
 No & Yes & Clusters & KNN & $50.2\% (442/879)$ \\
@@ -109,4 +123,5 @@ No & Yes & HotsLogs & KNN & $50.6\% (445/879)$ \\
 No & Yes & HotsLogs & SVM & $50.6\% (445/879)$ \\
 No & Yes & HotsLogs & Logistic Regression & $50.4\% (443/879)$ \\
 \end{tabular}
+
 \end{document}
